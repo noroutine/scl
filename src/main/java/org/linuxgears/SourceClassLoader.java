@@ -1,17 +1,12 @@
 package org.linuxgears;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Arrays;
+import java.io.*;
 import java.util.logging.Logger;
 
 /**
- * Created by IntelliJ IDEA.
  * User: grim
  * Date: 2/27/11
  * Time: 7:40 PM
- * To change this template use File | Settings | File Templates.
  */
 public class SourceClassLoader extends ClassLoader {
 

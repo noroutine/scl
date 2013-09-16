@@ -1,19 +1,14 @@
 package org.linuxgears;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * Created by IntelliJ IDEA.
  * User: grim
  * Date: 2/27/11
  * Time: 10:52 PM
- * To change this template use File | Settings | File Templates.
  */
 class JavaCompiler {
 
@@ -28,7 +23,7 @@ class JavaCompiler {
     private Logger logger;
 
     enum SourceLevel {
-        JDK13("1.3"), JDK14("1.4"), JDK15("1.5"), JDK16("1.6");
+        JDK13("1.3"), JDK14("1.4"), JDK15("1.5"), JDK16("1.6"), JDK17("1.7");
 
         final String optionValue;
 

@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
  * User: grim
  * Date: 2/27/11
  * Time: 11:46 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Utils {
     @SuppressWarnings("unchecked")
