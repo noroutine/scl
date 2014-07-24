@@ -17,13 +17,13 @@ class JavaCompiler {
     private String classPath;
     private String sourcePath;
 
-    private SourceLevel target = JavaCompiler.SourceLevel.JDK16;
-    private SourceLevel source = JavaCompiler.SourceLevel.JDK16;
+    private SourceLevel target = JavaCompiler.SourceLevel.JDK18;
+    private SourceLevel source = JavaCompiler.SourceLevel.JDK18;
 
     private Logger logger;
 
     enum SourceLevel {
-        JDK13("1.3"), JDK14("1.4"), JDK15("1.5"), JDK16("1.6"), JDK17("1.7");
+        JDK13("1.3"), JDK14("1.4"), JDK15("1.5"), JDK16("1.6"), JDK17("1.7"), JDK18("1.8");
 
         final String optionValue;
 
