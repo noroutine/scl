@@ -1,22 +1,31 @@
-#!/bin/sh
+#!/bin/bash -e
 
-M2_REPO=$HOME/.m2/repository
+_main() {
+    local source_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+    local javac=${JAVAC:-/usr/bin/javac}
 
-java_args=()
-prog_args=()
+    M2_REPO=$HOME/.m2/repository
 
-for arg in "$@"; do
-    if [[ $arg =~ ^(-X|-D) ]]; then
-        java_args=( "${java_args[@]}" $arg )
-    else
-        prog_args=( "${prog_args[@]}" $arg )
-    fi
-done
+    local java_args=()
+    local prog_args=()
 
-CLASSPATH=$M2_REPO/commons-cli/commons-cli/1.2/commons-cli-1.2.jar:$M2_REPO/org/linuxgears/scl/1.0-SNAPSHOT/scl-1.0-SNAPSHOT.jar
+    for arg in "$@"; do
+        if [[ $arg =~ ^(-X|-D) ]]; then
+            java_args+=( $arg )
+        else
+            prog_args+=( $arg )
+        fi
+    done
 
-java -Dorg.linuxgears.scl.java.compiler=/usr/bin/javac \
-    -cp $CLASSPATH \
-    "${java_args[@]}" \
-    org.linuxgears.App \
-    "${prog_args[@]}"
+    CLASSPATH=${M2_REPO}/commons-cli/commons-cli/1.2/commons-cli-1.2.jar:${M2_REPO}/org/linuxgears/scl/1.0-SNAPSHOT/scl-1.0-SNAPSHOT.jar
+
+    java -Dorg.linuxgears.scl.java.compiler=${javac} \
+        -cp ${CLASSPATH} \
+        "${java_args[@]}" \
+        org.linuxgears.App \
+        "${prog_args[@]}"
+}
+
+_main "${@:-}"
+
+# End of file
