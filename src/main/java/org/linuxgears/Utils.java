@@ -6,6 +6,7 @@ import java.io.File;
 import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,20 @@ public class Utils {
         return m;
     }
 
+    public static URL fileToEncodedURL(File file) throws Exception {
+        String path = file.getAbsolutePath();
+        // String path = URLEncoder.encode(filePath, "UTF-8");
+
+        if (!path.startsWith("/")) {
+            path = "/" + path;
+        }
+        if (!path.endsWith("/") && file.isDirectory()) {
+            path = path + "/";
+        }
+
+        return new URL("file://" + path);
+    }
+
     public static URL[] getClasspathURLs(String classpath) {
         List<URL> urls = new ArrayList<URL>();
 
@@ -36,9 +51,9 @@ public class Utils {
 
         for (int i = 0; i < cps.length; i++) {
             try {
-                urls.add(ParseUtil.fileToEncodedURL(new File(cps[i])));
-            } catch (MalformedURLException ex) {
-                // shh
+                urls.add(Utils.fileToEncodedURL(new File(cps[i])));
+            } catch (Exception ex) {
+                System.out.print(ex.getMessage());
             }
         }
 
